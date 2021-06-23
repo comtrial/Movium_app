@@ -24,7 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed("/detail/123456");
+                    },
                     child: VideoWidget(
                       key: Key(toString()),
                     ),

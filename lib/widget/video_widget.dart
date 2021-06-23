@@ -1,21 +1,23 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_application_2/model/constant.dart';
 import 'package:get/get.dart';
+import 'package:favorite_button/favorite_button.dart';
 
 class VideoWidget extends StatelessWidget {
-  const VideoWidget({required Key key}) : super(key: key);
+  const VideoWidget({Key key}) : super(key: key);
 
   Widget _thumbnail() {
     return Container(
       margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-      height: 240,
-      width: 400,
+      height: 270,
+      width: 500,
       decoration: BoxDecoration(
-        color: mainBackground,
         image: DecorationImage(
             image: Image.network(
-                    'https://i.pinimg.com/originals/86/ec/51/86ec51c589d572db18481beddfc8188a.jpg')
+                    'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/1j7Y/image/pVsFi73pS3XCKTxQYInv9i2D4Uw.jpg')
                 .image,
             fit: BoxFit.cover),
       ),
@@ -25,17 +27,10 @@ class VideoWidget extends StatelessWidget {
   Widget _simpleDetailinfo() {
     return Container(
       color: mainBackground,
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-      padding: const EdgeInsets.only(left: 10, bottom: 10),
+      margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
+      padding: const EdgeInsets.only(left: 10, bottom: 5),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 20,
-            backgroundColor: mainBackground,
-            backgroundImage: Image.network(
-                    'https://pbs.twimg.com/profile_images/600556005462650881/BQr5YI4D_400x400.jpg')
-                .image,
-          ),
           SizedBox(width: 0),
           Expanded(
             child: Column(
@@ -48,43 +43,88 @@ class VideoWidget extends StatelessWidget {
                         ("${Movie().name}"),
                         maxLines: 2,
                         style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
                     ),
-                    IconButton(
-                        alignment: Alignment.topCenter,
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.more_vert,
-                          size: 18,
-                        ))
                   ],
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      "하위하윙",
+                      "조회수 : ${(Movie().count)}만",
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 14,
                         color: Colors.white,
                       ),
                     ),
-                    Text(" . "),
+                    Text("  "),
+                    FavoriteButton(
+                      iconSize: 30,
+                      isFavorite: false,
+                      iconDisabledColor: Colors.white,
+                      valueChanged: (_isFavorite) {
+                        print('Is Favorite : $_isFavorite');
+                      },
+                    ),
                     Text(
-                      "조회수",
+                      " ${(Movie().likecount)}천",
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 14,
                         color: Colors.white,
                       ),
                     ),
-                    Text(" . "),
-                    Text(
-                      "2021-02-05",
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.white,
+                  ],
+                ),
+                SizedBox(height: 5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ButtonTheme(
+                      minWidth: 1,
+                      height: 30,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: RaisedButton(
+                        onPressed: () {
+                          Get.toNamed("/channel_info/12345678");
+                        },
+                        child: Container(
+                          child: Text(
+                            "채널 정보",
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: mainWhite,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        color: mainPink,
                       ),
+                    ),
+                    // SizedBox(width: 126),
+                    Row(
+                      children: [
+                        Text(
+                          "감상 가능한 서비스",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: mainWhite,
+                          ),
+                        ),
+                        CircleAvatar(
+                          radius: 20,
+                          backgroundImage:
+                              Image.network(Movie().OTTimage[0]).image,
+                        ),
+                        CircleAvatar(
+                          radius: 20,
+                          backgroundImage:
+                              Image.network(Movie().OTTimage[1]).image,
+                        ),
+                      ],
                     ),
                   ],
                 )
@@ -98,21 +138,16 @@ class VideoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final med = MediaQuery.of(context);
     return Container(
-      width: med.size.width,
-      decoration: BoxDecoration(color: Colors.grey, boxShadow: [
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(color: mainBackground, boxShadow: [
         BoxShadow(
-          color: Colors.grey.withOpacity(0.2),
+          color: mainBackground,
           offset: Offset(0, 2), // changes position of shadow
         ),
       ]),
       child: Column(
         children: [
-          SizedBox(
-            height: 0,
-            width: 0,
-          ),
           _thumbnail(),
           _simpleDetailinfo(),
         ],
@@ -124,10 +159,16 @@ class VideoWidget extends StatelessWidget {
 class Movie {
   String name;
   int count;
-  int uploaddate;
+  int likecount;
+  // ignore: non_constant_identifier_names
+  var OTTimage = [
+    'https://yt3.ggpht.com/ytc/AAUvwniTcMUuinsOROuiKYmf18zwT9gmixKbxHIWcgN1=s900-c-k-c0x00ffffff-no-rj',
+    'https://image.rocketpunch.com/company/126/watcha_logo_1611108610.png?s=400x400&t=inside'
+  ];
   Movie({
-    this.name = "해리포터",
+    this.name = "해리포터 시리즈 첫 번째 이야기 1분 (해리포터와 마법사의 돌)",
     this.count = 400,
-    this.uploaddate = 20210623,
+    this.likecount = 2,
+    // ignore: non_constant_identifier_names
   });
 }

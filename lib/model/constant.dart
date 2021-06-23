@@ -3,11 +3,13 @@ import 'dart:io';
 
 // Colors
 const mainWhite = Color(0xFFFFFFFF);
+const mainPink = Color(0xFFFFABA4);
 const mainBackground = Colors.black;
 const mainFontDark = Colors.black87;
 const subGray = Color(0xFFFAFAFB);
 const downDark = Color(0x66000000);
 const lineGray = Color(0x1A000000);
+//
 
 //Text StyleSheet
 var kAppBarTitleStyle = TextStyle(
