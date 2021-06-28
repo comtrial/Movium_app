@@ -4,7 +4,9 @@ import 'dart:io';
 // Colors
 const mainWhite = Color(0xFFFFFFFF);
 const mainPink = Color(0xFFFFABA4);
-const mainBackground = Colors.black;
+const subPink = Color(0x9FFFABA4);
+const mainBackground = Color(0xFF202020);
+//const mainBackground = Colors.black;
 const mainFontDark = Colors.black87;
 const subGray = Color(0xFFFAFAFB);
 const downDark = Color(0x66000000);
@@ -15,15 +17,32 @@ const lineGray = Color(0x1A000000);
 var kAppBarTitleStyle = TextStyle(
   fontSize: 18,
   fontWeight: FontWeight.bold,
-  color: mainFontDark,
+  color: mainWhite,
   fontFamily: Platform.isIOS ? 'SF Pro Text' : null,
   decoration: TextDecoration.none,
 );
 
-var kTitleStyle = TextStyle(
-  fontSize: 16,
+//Home Style
+var kHomeTitleStyle = TextStyle(
+  fontSize: 20,
   fontWeight: FontWeight.bold,
-  color: Colors.black87,
+  color: mainWhite,
+  fontFamily: Platform.isIOS ? 'SF Pro Text' : null,
+  decoration: TextDecoration.none,
+);
+
+var kHomeGanreStyle = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  color: mainWhite,
+  fontFamily: Platform.isIOS ? 'SF Pro Text' : null,
+  decoration: TextDecoration.none,
+);
+
+var kHomeContentStyle = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w600,
+  color: mainWhite,
   fontFamily: Platform.isIOS ? 'SF Pro Text' : null,
   decoration: TextDecoration.none,
 );
@@ -31,7 +50,7 @@ var kTitleStyle = TextStyle(
 var kTitle2Style = TextStyle(
   fontSize: 15,
   fontWeight: FontWeight.bold,
-  color: mainFontDark,
+  color: mainWhite,
   fontFamily: Platform.isIOS ? 'SF Pro Text' : null,
   decoration: TextDecoration.none,
 );
@@ -39,7 +58,7 @@ var kTitle2Style = TextStyle(
 var kTitle3Style = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.bold,
-  color: mainFontDark,
+  color: mainWhite,
   fontFamily: Platform.isIOS ? 'SF Pro Text' : null,
   decoration: TextDecoration.none,
 );
@@ -47,7 +66,7 @@ var kTitle3Style = TextStyle(
 var kContentStyle = TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.w600,
-  color: downDark,
+  color: mainWhite,
   fontFamily: Platform.isIOS ? 'SF Pro Text' : null,
   decoration: TextDecoration.none,
 );
@@ -55,7 +74,7 @@ var kContentStyle = TextStyle(
 var kContentSubStyle = TextStyle(
   fontSize: 12,
   fontWeight: FontWeight.w600,
-  color: subGray,
+  color: mainWhite,
   fontFamily: Platform.isIOS ? 'SF Pro Text' : null,
   decoration: TextDecoration.none,
 );
@@ -63,7 +82,7 @@ var kContentSubStyle = TextStyle(
 var kSearchHintStyle = TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w600,
-  color: subGray,
+  color: mainWhite,
   fontFamily: Platform.isIOS ? 'SF Pro Text' : null,
   decoration: TextDecoration.none,
 );

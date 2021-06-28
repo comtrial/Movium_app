@@ -51,7 +51,7 @@ class _PlayVideoState extends State<PlayVideo> {
     _seekToController = TextEditingController();
     _videoMetaData = const YoutubeMetaData();
     _playerState = PlayerState.unknown;
-    _controller.toggleFullScreenMode();
+    //_controller.toggleFullScreenMode();
   }
 
   void listener() {
