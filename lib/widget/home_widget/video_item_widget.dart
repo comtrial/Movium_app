@@ -1,10 +1,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/model/constant.dart';
+import 'package:flutter_application_2/model/home_model/home_video_item.dart';
 import 'package:get/get.dart';
 
 
-class VideoItem extends StatelessWidget{
+class VideoItemWidget extends StatelessWidget{
+
+  final VideoItem videoitem;
+  const VideoItemWidget({ Key key, this.videoitem }) : super(key: key);
+
+  //??이거 맞나
+  get videoThumbnail => null;
+  get videoTitle => null;
 
   Widget _thumnail() {
     return Container(
@@ -13,7 +21,7 @@ class VideoItem extends StatelessWidget{
       decoration: BoxDecoration(
         image: DecorationImage(
           image: Image.network(
-                    "${Movie().thumnail}")
+                    "${videoitem.videoThumbnail}")
                     .image,
           fit: BoxFit.cover),
         )
@@ -25,8 +33,9 @@ class VideoItem extends StatelessWidget{
       margin: EdgeInsets.fromLTRB(0, 8, 0, 0),
       child: Expanded(
         child: Text(
-        '${Movie().name}',maxLines: 2,
+        '${videoitem.videoTitle}',maxLines: 2,
         style: kHomeContentStyle,
+        overflow: TextOverflow.ellipsis,
       )
     )
     );

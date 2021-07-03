@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/model/constant.dart';
 import 'package:get/get.dart';
 import 'controller/app_controller.dart';
+import 'screen/first_recommendation_screen.dart';
 import 'screen/home_screen.dart';
+import 'screen/search_screen.dart';
 
 
 class App extends GetView<AppController> {
@@ -16,11 +18,11 @@ class App extends GetView<AppController> {
           case RouteName.Home:
             return HomeScreen();
             break;
-          case RouteName.Explore:
-            return Container();
+          case RouteName.Recommend:
+            return FirstRecommendationScreen();
             break;
-          case RouteName.Notification:
-            return Container();
+          case RouteName.Explore:
+            return SearchGenre();
             break;
           case RouteName.Setting:
             return Container();
@@ -51,12 +53,12 @@ class App extends GetView<AppController> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-              Icons.search,
+              Icons.subscriptions,
               size: 23,
               color: Colors.white,
               ),
               activeIcon: Icon(
-              Icons.search,
+              Icons.subscriptions,
               size: 23,
               color: mainPink,
               ),
@@ -64,12 +66,12 @@ class App extends GetView<AppController> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-              Icons.notifications,
+              Icons.search,
               size: 23,
               color: Colors.white,
               ),
               activeIcon: Icon(
-              Icons.notifications,
+              Icons.search,
               size: 23,
               color: mainPink,
               ),

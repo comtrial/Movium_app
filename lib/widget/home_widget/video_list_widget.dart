@@ -3,6 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_application_2/model/constant.dart';
+import 'package:flutter_application_2/model/home_model/home_video_group.dart';
+import 'package:flutter_application_2/model/home_model/home_video_item.dart';
+import 'package:flutter_application_2/model/home_model/home_video_list.dart';
 import 'package:flutter_application_2/widget/home_widget/video_item_widget%20copy.dart';
 import 'package:flutter_application_2/widget/home_widget/video_item_widget.dart';
 import 'package:get/get.dart';
@@ -10,7 +13,10 @@ import 'package:favorite_button/favorite_button.dart';
 
 
 class VideolListView extends StatelessWidget {
-  const VideolListView({Key key}) : super(key: key);
+
+  final VideoList videoList;
+  //final VideoList videolist;
+  const VideolListView({Key key, this.videoList }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +25,19 @@ class VideolListView extends StatelessWidget {
       children: [
         GestureDetector(
               onTap: (){
-                //  Get.toNamed("/detail/123456");
+                Get.toNamed("/detail/123456");
               },// list 상단바 클릭시 event
               child: Row(
                 children: [
+                  SizedBox(
+                      width:14
+                    ),
                   Container(
                 width:150,
                 height: 30,
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  '실시간 급상승 영상',
+                  videoList.category,
                   style: kHomeTitleStyle,
                 ),
               ),
@@ -37,27 +46,51 @@ class VideolListView extends StatelessWidget {
         ),
         Container(
       padding: EdgeInsets.symmetric(vertical: 20.0),
-      height: 225,
+      height: 240,
       decoration: new BoxDecoration(
         color: mainBackground
       ),
-      child: ListView(
-      scrollDirection: Axis.horizontal,
-      children: <Widget>[
-        VideoItem(),
-        VideoItem2(),
-        Container(
-          width:225,
-          height:125,
-          color: Colors.white
-        )
-      ],
-    ),
-    ),
-    SizedBox(
-      height:44
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.all(14),
+        itemCount: videoList.items.length,
+        itemBuilder: (BuildContext context, int index) {
+          return VideoItemWidget( videoitem:  videoList.items[index] );
+        //   Container(
+        //     width: 50,
+        //     height: 50,
+        //     color: Colors.pink
+        //   );
+        }
+      )
+      
+    //   Obx(() =>
+    //   ListView(
+    //   scrollDirection: Axis.horizontal,
+    //   children: <Widget>[
+    //     SizedBox(
+    //       width:14
+    //     ),
+    //     //videoItem 넘겨받ㅇ아
+    //     VideoItem(
+    //       videoitem: videoItem
+    //       ),
+    //     VideoItem2(),
+    //     Container(
+    //       width:225,
+    //       height:125,
+    //       color: Colors.white
+    //     )
+    //   ],
+    // ),
+    // ),)
+    
+    
+    // ,
+    // SizedBox(
+    //   height:44
     )
-      ],
+       ],
     );
   } 
 }

@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         //Custom color로 바꿔야 할 듯
         brightness: Brightness.dark,
-        primaryColor: Colors.black,
+        //primaryColor: Colors.black,
+        cursorColor: mainPink,
         primarySwatch: Colors.pink,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),

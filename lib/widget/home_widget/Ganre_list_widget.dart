@@ -9,6 +9,7 @@ class Ganre_list extends StatelessWidget{
   Widget build(BuildContext context) {
     return // 상단 btn list
                 Row(
+
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ElevatedButton(

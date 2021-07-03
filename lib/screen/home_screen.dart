@@ -24,7 +24,8 @@ class HomeScreen extends StatelessWidget {
       ),
       backgroundColor: mainBackground,
       body: SafeArea(
-        child:  CustomScrollView(
+        child:  Obx(() =>
+        CustomScrollView(
           slivers: [
             SliverAppBar(
               title: Container(
@@ -34,26 +35,28 @@ class HomeScreen extends StatelessWidget {
                 child: Ganre_list()
               ),
             ),
-            SliverPadding(padding: EdgeInsets.only(top: 24)),
+            SliverPadding(padding: EdgeInsets.only(top: 24, left: 14, right: 14)),
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   //Home List 구성 Widget
-                  return GestureDetector(
-                    onTap: () {
-                      // Get.toNamed("/detail/123456");
-                    },
-                    child: VideolListView(
-                      key: Key(toString()),
-                    ),
+                  return VideolListView(
+                      //list 로 바꿔줘야해 
+                      //videoList: controller.aviedoList.value.items[index],
+                      videoList : controller.videoGroup.value[index]
+                      //key: Key(toString()),
                   );
                 },
-                childCount: 5,
+                // home controllrer 에서 받아온 obx data 처리
+                childCount: controller.videoGroup.value.length  == null
+                  ? 0
+                  : controller.videoGroup.value.length,
               ),
             ),
           ],
         ),
       ),
+      )
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-enum RouteName { Home, Explore, Notification, Setting }
+enum RouteName { Home, Recommend, Explore, Setting }
 
 class AppController extends GetxService {
   static AppController get to => Get.find();

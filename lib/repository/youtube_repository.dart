@@ -17,7 +17,7 @@ class HomeVideoListRepository extends GetConnect{
   }
   //안댐 list로
   
-  Future<VideoList> loadLists() async {
+  Future<VideoList> loadLists(_group_num) async {
     String url = "/home";
 
     final response = await get(url);
@@ -28,7 +28,7 @@ class HomeVideoListRepository extends GetConnect{
     else {
       if(response.body != null && response.body.length >0){
         
-        return VideoList.fromJson(response.body.keys.toList()[0], response.body);
+        return VideoList.fromJson(response.body.keys.toList()[_group_num], response.body);
       }
     }
   }
